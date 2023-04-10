@@ -7,4 +7,4 @@ def sign_in(request):
 
 def send_the_index(request):
     the_index = open('static/index.html')
-    return HttpResponse(the_index)
+    return HttpResponse(the_index) 
