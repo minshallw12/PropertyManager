@@ -5,14 +5,14 @@ import { UserContext } from "../App";
 export const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const {user} = useContext(UserContext)
   const {setUser} = useContext(UserContext)
  
 
   return (
+    <div className="login_form_container">
     <form
-      onSubmit={(e) => [
-        e.preventDefault(),
+      onSubmit={(event) => [
+        event.preventDefault(),
         logIn(email, password, setUser),
         setEmail(""),
         setPassword(""),
@@ -22,15 +22,17 @@ export const LogIn = () => {
       <input
         placeholder="email"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(event) => setEmail(event.target.value)}
       />
       <input
         placeholder="password"
         type="password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(event) => setPassword(event.target.value)}
       />
       <input type="submit" value="Log In" />
     </form>
+    </div>
+    
   );
 };

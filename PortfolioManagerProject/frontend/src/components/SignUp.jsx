@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { signUp } from "../utilities";
 
 export const SignUp = () => {
@@ -6,14 +6,11 @@ export const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  //   useEffect(()=> {
-  //     console.log(name, email, password)
-  //   }, [name, email, password])
 
   return (
     <form
-      onSubmit={(e) => [
-        e.preventDefault(),
+      onSubmit={(event) => [
+        event.preventDefault(),
         signUp(name, email, password),
         setEmail(""),
         setPassword(""),
@@ -25,18 +22,18 @@ export const SignUp = () => {
       <input
         placeholder="name"
         value={name}
-        onChange={(e) => setName(e.target.value)}
+        onChange={(event) => setName(event.target.value)}
       />
       <input
         placeholder="email"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(event) => setEmail(event.target.value)}
       />
       <input
         placeholder="password"
         type="password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(event) => setPassword(event.target.value)}
       />
       <input type="submit" value="signUp" />
     </form>
