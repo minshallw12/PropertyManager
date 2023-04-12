@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { signUp } from "../utilities";
+import SpinningGlobe from './SpinningGlobe'
 
 export const SignUp = () => {
   const [name, setName] = useState("");
@@ -20,7 +21,7 @@ export const SignUp = () => {
       className="login_form_container"
     >
       <h3>Sign Up</h3>
-      <img className='spinning_globe'src="" alt="image here" />
+      <SpinningGlobe/>
    
       <input
         placeholder="name"

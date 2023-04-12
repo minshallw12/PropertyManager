@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import "./App.css";
-import { SignUp } from "./components/SignUp";
-import { LogIn } from "./components/LogIn";
+// import { SignUp } from "./components/SignUp";
+// import { LogIn } from "./components/LogIn";
 import { currUser, logOut } from "./utilities";
 import { getToken } from "./components/CsrfToken";
 import { Outlet } from "react-router-dom";

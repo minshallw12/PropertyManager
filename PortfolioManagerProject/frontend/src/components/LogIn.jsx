@@ -1,6 +1,7 @@
 import {  useContext, useState } from "react";
 import { logIn } from "../utilities";
 import { UserContext } from "../App";
+import SpinningGlobe from "./SpinningGlobe"
 
 export const LogIn = () => {
   const [email, setEmail] = useState("");
@@ -22,7 +23,7 @@ export const LogIn = () => {
         <h3>Log In</h3>
       </div>
       <div className="center">
-        <img className='spinning_globe'src="" alt="image here" />
+        <SpinningGlobe />
       </div>
       <div className="input_container">
         <input
