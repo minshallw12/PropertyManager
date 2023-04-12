@@ -18,21 +18,29 @@ export const LogIn = () => {
         setPassword(""),
       ]}
     >
-      <h3>Log In</h3>
-      <input
-        placeholder="email"
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
-        className="form_item"
+      <div className="form_title_container">
+        <h3>Log In</h3>
+      </div>
+      <div className="center">
+        <img className='spinning_globe'src="" alt="image here" />
+      </div>
+      <div className="input_container">
+        <input
+          placeholder="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          className="form_item"
+        />
+        <input
+          placeholder="password"
+          type="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          className="form_item"
       />
-      <input
-        placeholder="password"
-        type="password"
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-        className="form_item"
-      />
-      <input type="submit" value="Log In" className="form_item" />
+        <input type="submit" value="Log In" className="form_item" />
+      </div>
+
     </form>
     </div>
     

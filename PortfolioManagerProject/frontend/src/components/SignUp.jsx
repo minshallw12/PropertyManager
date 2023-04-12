@@ -20,6 +20,8 @@ export const SignUp = () => {
       className="login_form_container"
     >
       <h3>Sign Up</h3>
+      <img className='spinning_globe'src="" alt="image here" />
+   
       <input
         placeholder="name"
         value={name}
