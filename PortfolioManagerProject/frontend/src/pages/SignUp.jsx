@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { signUp } from "../utilities";
-import SpinningGlobe from './SpinningGlobe'
+import SpinningGlobe from '../components/SpinningGlobe'
 
 export const SignUp = () => {
   const [name, setName] = useState("");
@@ -20,7 +20,7 @@ export const SignUp = () => {
       style={{ display: "flex", flexDirection: "column" }}
       className="login_form_container"
     >
-      <h3>Sign Up</h3>
+      <h3>Sign Up Form</h3>
       <SpinningGlobe/>
    
       <input
@@ -42,7 +42,7 @@ export const SignUp = () => {
         onChange={(event) => setPassword(event.target.value)}
         className="form_item"
       />
-      <input type="submit" value="Create account" className="form_item"/>
+      <input type="submit" value="Create account" className="form_item button"/>
     </form>
   );
 };

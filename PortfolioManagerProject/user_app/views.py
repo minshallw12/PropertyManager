@@ -42,10 +42,10 @@ def user_log_in(request):
             login(request._request, user)
             print(user)
             return JsonResponse({'email': user.email, 'name':user.name})
-        except Exception as e:
-            print(e)
-            return JsonResponse({'login':False})
-    return JsonResponse({'login':False})
+        except Exception as event:
+            print(event)
+            return JsonResponse({'user': None})
+    return JsonResponse({'user': None})
 
 
 @api_view(["GET"])
