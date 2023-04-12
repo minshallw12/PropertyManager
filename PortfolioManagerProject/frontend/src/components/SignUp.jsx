@@ -17,25 +17,29 @@ export const SignUp = () => {
         setName(""),
       ]}
       style={{ display: "flex", flexDirection: "column" }}
+      className="login_form_container"
     >
       <h3>Sign Up</h3>
       <input
         placeholder="name"
         value={name}
         onChange={(event) => setName(event.target.value)}
+        className="form_item"
       />
       <input
         placeholder="email"
         value={email}
         onChange={(event) => setEmail(event.target.value)}
+        className="form_item"
       />
       <input
         placeholder="password"
         type="password"
         value={password}
         onChange={(event) => setPassword(event.target.value)}
+        className="form_item"
       />
-      <input type="submit" value="signUp" />
+      <input type="submit" value="Create account" className="form_item"/>
     </form>
   );
 };

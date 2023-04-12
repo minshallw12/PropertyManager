@@ -25,8 +25,12 @@ export default function App() {
 
   return (
     <div className="App">
-      <button onClick={()=>logOut(setUser)}>LOG OUT</button>
-      <h1>HELLO {user && user.name}</h1>
+      <button onClick={()=>logOut(setUser)}>Sign Out</button>
+      <div className="header_container">
+        <h1>Portfolio Manager</h1>
+        <h2>Hello {user && user.name}</h2>
+      </div>
+      
       <NavBar />
 
       <UserContext.Provider value={{user, setUser}} >

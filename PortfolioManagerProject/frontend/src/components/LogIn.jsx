@@ -23,14 +23,16 @@ export const LogIn = () => {
         placeholder="email"
         value={email}
         onChange={(event) => setEmail(event.target.value)}
+        className="form_item"
       />
       <input
         placeholder="password"
         type="password"
         value={password}
         onChange={(event) => setPassword(event.target.value)}
+        className="form_item"
       />
-      <input type="submit" value="Log In" />
+      <input type="submit" value="Log In" className="form_item" />
     </form>
     </div>
     

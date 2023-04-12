@@ -1,0 +1,24 @@
+* {
+    color: blue;
+}
+
+.navbar_container {
+    display: flex;
+    justify-content: space-evenly;
+    border: 3px dotted orange;
+}
+.header_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login_form_container {
+    border: 2px dotted green;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form_item {
+    max-width: 500px;
+}
