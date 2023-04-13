@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Outlet } from "react-router-dom";
 import { currUser, logOut } from "./utilities";
 import { getToken } from "./components/CsrfToken";
-import { NavBar, RealEstateNavBar } from "./components/NavBar";
+import { NavBar } from "./components/NavBar";
 
 export const UserContext = createContext({'user': null})
 
