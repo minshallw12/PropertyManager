@@ -8,17 +8,13 @@ export const LogIn = () => {
   const [password, setPassword] = useState("");
   const context = useContext(UserContext)
   const {setUser} = context
-  console.log(context.user, '<-- context Login.jsx')
 
 
   return (
     
     <div className="login_form_container">
       <form
-        onSubmit={(event) => { // bug here, every login shows "Log in failed" even with proper formatting
-          if (context.user === null || context.user.user === null) {
-            console.log('This user does not exist')
-          } else {
+        onSubmit={(event) => { 
             [
               event.preventDefault(),
               logIn(email, password, setUser),
@@ -26,7 +22,7 @@ export const LogIn = () => {
               setPassword(""),
             ]
           }
-          }}
+        }
       >
         <div className="form_title_container">
           <h3>Please Log In</h3>

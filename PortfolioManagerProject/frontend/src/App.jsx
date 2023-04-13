@@ -4,12 +4,14 @@ import { Link } from 'react-router-dom';
 import { Outlet } from "react-router-dom";
 import { currUser, logOut } from "./utilities";
 import { getToken } from "./components/CsrfToken";
-import { NavBar } from "./components/NavBar";
+import { NavBar, RealEstateNavBar } from "./components/NavBar";
 
-export const UserContext = createContext(null)
+export const UserContext = createContext({'user': null})
+
 
 export default function App() {
   const [user, setUser] = useState(null);
+
 
   getToken()
 
@@ -46,7 +48,10 @@ export default function App() {
           <h1>Property Portfolio Manager</h1>
         </div>
 
-        <NavBar />
+          <NavBar />
+          {/* <RealEstateNavBar/> */}
+
+        
 
         <div className="center">
           <h2>{user && welcomeMessage()}</h2>

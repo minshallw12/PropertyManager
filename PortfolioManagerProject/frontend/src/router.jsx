@@ -8,11 +8,11 @@ import Error from './pages/Error';
 const Router = createHashRouter([{
     path: '/',
     element: <App />,
+    errorElement: <Error/>,
     children: [
         {
             index: true,
             element: <LogIn />,
-            errorElement: <Error/>
         },
         {
             path:"/account/",
