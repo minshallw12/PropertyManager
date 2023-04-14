@@ -5,12 +5,12 @@ import { UserContext, isLoggedIn } from "../App";
 export const NavBar = () => {
     let context = useContext(UserContext);
     let loginContext = useContext(isLoggedIn);
-    console.log(context.user, loginContext, '<-- Current User in NavBar.jsx')
+    console.log(context.user, loginContext.logInFlag, '<-- Current User in NavBar.jsx')
 
     return (
         <div className="navbar_container">
             {       //logged-in Navbar
-                    context.user  ?
+                    loginContext.logInFlag  ?
                         <div className="navbar">
                             <Link className="nav_links" to={'/dashboard'}>Home</Link>
                             <Link className="nav_links" to={'/dashboard'}>My Properties</Link> 
