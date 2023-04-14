@@ -4,11 +4,11 @@ import { UserContext } from "../App";
 
 export const NavBar = () => {
     let context = useContext(UserContext);
-    console.log(context.user, '<-- Current User')
+    console.log(context.user, '<-- Current User in NavBar.jsx')
 
     return (
         <div className="navbar_container">
-            {
+            {       //logged-in Navbar
                     context.user  ?
                         <div className="navbar">
                             <Link className="nav_links" to={'/dashboard'}>Home</Link>
@@ -18,6 +18,7 @@ export const NavBar = () => {
                             <Link className="nav_links" to={'/dashboard/calc'}>Calculator</Link> 
                         </div>
                     :
+                    //logged-out Navbar
                         <div className="navbar">
                             <Link className="nav_links" to={'/account'}>Create Account</Link>
                             <Link className="nav_links" to={'/'}>Log In</Link>

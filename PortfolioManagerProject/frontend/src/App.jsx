@@ -34,13 +34,17 @@ export default function App() {
     }
   }
 
+  function resetUser() {
+    setUser({user, user: null})
+  }
+
   console.log(user, 'user App.jsx')
   return (
     <div className="App">
       <UserContext.Provider value={{user, setUser}} >
 
       <div className="signout_container">
-        <button className="button"onClick={()=>logOut(setUser)}><Link to='/'>Sign Out</Link></button>
+        <button className="button"onClick={()=>logOut(resetUser)}><Link to='/'>Sign Out</Link></button>
         <h6>{user && currentUser()}</h6>
       </div>
 
