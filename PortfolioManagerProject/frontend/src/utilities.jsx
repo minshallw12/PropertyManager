@@ -16,20 +16,17 @@ export const logIn = async(email, password, setUser, setLogInFlag) => {
         'email' : email,
         'password' : password
     })
-    console.log(response.data, "<-- my response when clicking logIn button")
     setUser(response.data)
     setLogInFlag(true)
 }
 
 export const currUser = async() =>{
     let response = await axios.get('/user/curruser/')
-    console.log(response.data, '<-- current user')
     return response.data
 }
 
 export const currFlag = async() => {
     let response = await axios.get('/user/currflag/')
-    console.log(response.data)
     return response.data
 }
 

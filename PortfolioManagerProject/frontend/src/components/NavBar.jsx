@@ -5,7 +5,6 @@ import { isLoggedIn } from "../App";
 
 export const NavBar = () => {
     let loginContext = useContext(isLoggedIn);
-    console.log(loginContext.logInFlag, '<-- Current User in NavBar.jsx')
 
     return (
         <div className="navbar_container">

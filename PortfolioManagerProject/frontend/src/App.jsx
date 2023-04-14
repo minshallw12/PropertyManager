@@ -47,7 +47,6 @@ export default function App() {
     setUser({user, user: null})
   }
 
-  console.log(user, logInFlag, 'user App.jsx')
   return (
     <div className="App">
       <UserContext.Provider value={{user, setUser}} >
