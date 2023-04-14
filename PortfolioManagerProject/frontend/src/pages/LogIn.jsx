@@ -1,13 +1,15 @@
 import {  useContext, useState } from "react";
 import { logIn } from "../utilities";
-import { UserContext } from "../App";
+import { UserContext, isLoggedIn } from "../App";
 import SpinningGlobe from "../components/SpinningGlobe"
 
 export const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const context = useContext(UserContext)
+  const loginContext = useContext(isLoggedIn)
   const {setUser} = context
+  const {setLogInFlag} = loginContext
 
 
   return (
@@ -15,14 +17,16 @@ export const LogIn = () => {
     <div className="login_form_container">
       <form
         onSubmit={(event) => { 
+          // 
             [
               event.preventDefault(),
-              logIn(email, password, setUser),
+              logIn(email, password, setUser, setLogInFlag), //<-- bug here ?
               setEmail(""),
               setPassword(""),
             ]
           }
         }
+        
       >
         <div className="form_title_container">
           <h3>Please Log In</h3>

@@ -1,10 +1,11 @@
 import { Link} from "react-router-dom"
 import { useContext } from "react";
-import { UserContext } from "../App";
+import { UserContext, isLoggedIn } from "../App";
 
 export const NavBar = () => {
     let context = useContext(UserContext);
-    console.log(context.user, '<-- Current User in NavBar.jsx')
+    let loginContext = useContext(isLoggedIn);
+    console.log(context.user, loginContext, '<-- Current User in NavBar.jsx')
 
     return (
         <div className="navbar_container">

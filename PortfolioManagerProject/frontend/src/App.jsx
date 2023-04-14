@@ -7,10 +7,12 @@ import { getToken } from "./components/CsrfToken";
 import { NavBar } from "./components/NavBar";
 
 export const UserContext = createContext({'user': null})
+export const isLoggedIn = createContext({'login': false})
 
 
 export default function App() {
   const [user, setUser] = useState(null);
+  const [logInFlag, setLogInFlag,] = useState(false); // <-- bug might show up here, this context is for navbar behavior
 
 
   getToken()
@@ -38,13 +40,13 @@ export default function App() {
     setUser({user, user: null})
   }
 
-  console.log(user, 'user App.jsx')
+  console.log(user, logInFlag, 'user App.jsx')
   return (
     <div className="App">
       <UserContext.Provider value={{user, setUser}} >
-
+      <isLoggedIn.Provider value={{logInFlag, setLogInFlag}}>
       <div className="signout_container">
-        <button className="button"onClick={()=>logOut(resetUser)}><Link to='/'>Sign Out</Link></button>
+        <button className="button"onClick={()=>logOut(resetUser, setLogInFlag)}><Link to='/'>Sign Out</Link></button>
         <h6>{user && currentUser()}</h6>
       </div>
 
@@ -53,7 +55,7 @@ export default function App() {
         </div>
 
           <NavBar />
-          {/* <RealEstateNavBar/> */}
+          
 
         
 
@@ -62,7 +64,7 @@ export default function App() {
         </div>
       
         <Outlet />
-
+      </isLoggedIn.Provider>
       </UserContext.Provider>
 
       <div className="center">

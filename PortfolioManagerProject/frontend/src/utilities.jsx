@@ -11,13 +11,14 @@ export const signUp = async(name, email, password) => {
 }
 
 
-export const logIn = async(email, password, setUser) => {
+export const logIn = async(email, password, setUser, setLogInFlag) => {
     let response = await axios.post('/user/login/', {
         'email' : email,
         'password' : password
     })
-
+    console.log(response.data, "<-- my response when clicking logIn button")
     setUser(response.data)
+    setLogInFlag(true)
 }
 
 export const currUser = async() =>{
@@ -26,9 +27,10 @@ export const currUser = async() =>{
     return response.data
 }
 
-export const logOut = async(setUser) => {
+export const logOut = async(setUser, setLogInFlag) => {
     let response = await axios.post('/user/logout/')
     if(response.data.logout){
         setUser(null)
+        setLogInFlag(false)
     }
 }
