@@ -15,12 +15,12 @@ export const LogIn = () => {
   return (
     
     <div className="login_form_container">
+      
       <form
         onSubmit={(event) => { 
-          // 
             [
               event.preventDefault(),
-              logIn(email, password, setUser, setLogInFlag), //<-- bug here ?
+              logIn(email, password, setUser, setLogInFlag), 
               setEmail(""),
               setPassword(""),
             ]
@@ -35,12 +35,14 @@ export const LogIn = () => {
           <SpinningGlobe />
         </div>
         <div className="input_container">
+          
           <input
             placeholder="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             className="form_item"
           />
+
           <input
             placeholder="password"
             type="password"
@@ -48,7 +50,9 @@ export const LogIn = () => {
             onChange={(event) => setPassword(event.target.value)}
             className="form_item"
         />
+
           <input type="submit" value="Log In" className="form_item button"  />
+
         </div>
       </form>
     </div>

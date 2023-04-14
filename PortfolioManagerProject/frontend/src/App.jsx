@@ -2,7 +2,7 @@ import "./App.css";
 import { createContext, useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { Outlet } from "react-router-dom";
-import { currUser, logOut } from "./utilities";
+import { currUser, logOut, currFlag } from "./utilities"; // currFlag
 import { getToken } from "./components/CsrfToken";
 import { NavBar } from "./components/NavBar";
 
@@ -12,16 +12,23 @@ export const isLoggedIn = createContext({'login': false})
 
 export default function App() {
   const [user, setUser] = useState(null);
-  const [logInFlag, setLogInFlag,] = useState(false); // <-- bug might show up here, this context is for navbar behavior
+  const [logInFlag, setLogInFlag,] = useState(false); 
 
-
-  getToken()
+  getToken();
 
   useEffect(() => {
     const getCurrUser = async () => {
       setUser(await currUser());
     };
+    const getCurrFlag = async () => {
+          setLogInFlag(await currFlag())
+        }
+    getCurrFlag();
     getCurrUser();
+
+    
+
+
   }, []);
 
   function welcomeMessage() {

@@ -59,7 +59,14 @@ def curr_user(request):
     else:
         return JsonResponse({"user":None})
     
-    
+@api_view(['GET'])
+def curr_flag(request):
+    if request.user.is_authenticated:
+        return JsonResponse({'flag': True})
+    else:
+        return JsonResponse({'flag': False})
+
+
 @api_view(['POST'])
 def user_log_out(request):
     try:

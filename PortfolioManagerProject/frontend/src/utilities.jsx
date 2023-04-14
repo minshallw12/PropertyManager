@@ -27,6 +27,13 @@ export const currUser = async() =>{
     return response.data
 }
 
+export const currFlag = async() => {
+    let response = await axios.get('/user/currflag/')
+    console.log(response.data)
+    return response.data
+}
+
+
 export const logOut = async(setUser, setLogInFlag) => {
     let response = await axios.post('/user/logout/')
     if(response.data.logout){
