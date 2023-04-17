@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
 from rest_framework.decorators import api_view
 from django.contrib.auth import authenticate, login, logout
+import requests
 from .models import App_User 
 from django.core.serializers import serialize
 
@@ -34,8 +35,12 @@ def firstAPIcall(request):
     amount = request.data['amount']
     term = request.data['term']
     rate = request.data['rate']
+    endpoint = f"https://www.commercialloandirect.com/monthlyPaymentAPI.php?pv={amount}&rate={rate}&nperiod={term}&io=0&pf=12&cf=1&pt=0&mode=json"
     print(amount,term, rate)
-    return HttpResponse('call fired')
+    print(endpoint)
+    response = requests.get(endpoint)
+    print(response)
+    return HttpResponse(response)
 
 
 @api_view(["POST"])
