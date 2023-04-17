@@ -7,21 +7,20 @@ export default function Calculator() {
     const [loanTerm, setLoanTerm] = useState(30)
     const [loanRate, setLoanRate] = useState(5)
     const [summary, setSummary] = useState({})
-    const [amortization, setAmortization] = useState([])
-
+    const [amortization, setAmortization] = useState({})
+    const [interest, setInterest] = useState(0)
 
     async function clickHandler(event) {
         event.preventDefault();
         let [dataSummary, dataAmortization] = await calculateMortgage(loanAmount, loanTerm, loanRate)
         setSummary(dataSummary)
         setAmortization(dataAmortization)
-        console.log(dataSummary, dataAmortization, "<-- click handler")
+        setInterest(dataAmortization[dataAmortization.length-1]["Interest Paid"])
         setLoanAmount(250000)
         setLoanTerm(30)
         setLoanRate(5)
     }   
 
-    console.log(amortization, '<-- amortization')
     return (
         <div className="calculator_page center">
             <div className="header">
@@ -87,7 +86,7 @@ export default function Calculator() {
                             </div>
                             <div class="monthly_interest">
                                 <h5>Total Interest Paid</h5>
-                                <div id="interest">${amortization['Year']}</div>
+                                <div id="interest">${interest}</div>
                             </div>
                             <div class="monthly_cost">
                                 <h5>Total cost of loan</h5>
