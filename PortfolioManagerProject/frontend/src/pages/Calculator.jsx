@@ -1,14 +1,27 @@
 import { useState } from 'react';
 import { calculateMortgage } from '../utilities';
-import axios from 'axios';
+
 
 export default function Calculator() {
     const [loanAmount, setLoanAmount] = useState(250000)
     const [loanTerm, setLoanTerm] = useState(30)
     const [loanRate, setLoanRate] = useState(5)
+    const [summary, setSummary] = useState({})
+    const [amortization, setAmortization] = useState([])
 
 
+    async function clickHandler(event) {
+        event.preventDefault();
+        let [dataSummary, dataAmortization] = await calculateMortgage(loanAmount, loanTerm, loanRate)
+        setSummary(dataSummary)
+        setAmortization(dataAmortization)
+        console.log(dataSummary, dataAmortization, "<-- click handler")
+        setLoanAmount(250000)
+        setLoanTerm(30)
+        setLoanRate(5)
+    }   
 
+    console.log(amortization, '<-- amortization')
     return (
         <div className="calculator_page center">
             <div className="header">
@@ -20,14 +33,7 @@ export default function Calculator() {
             <div className="display">
                 <form 
                     className="input_screen padding" 
-                    onSubmit={(event) => [
-                        event.preventDefault(),
-                        calculateMortgage(loanAmount,loanTerm,loanRate),
-                        setLoanAmount(250000),
-                        setLoanTerm(30),
-                        setLoanRate(5),
-                    ]
-                        }>
+                    onSubmit={clickHandler}>
                     <div className="loan_amount">
                         <h3>Loan Amount</h3>
                         <input
@@ -66,6 +72,7 @@ export default function Calculator() {
                         <button type='submit'>Calculate</button>
                     </div>
                 </form>
+
                 <div class="results_screen padding">
                     <div class="summary_header">
                         <h3>Summary</h3>
@@ -76,15 +83,15 @@ export default function Calculator() {
                         <div class="summary_box">
                             <div class="monthly_payment">
                                 <h5>Monthly Payment</h5>
-                                <div id="payment">$</div>
+                                <div id="payment">${summary['Principal + Interest Payment']}</div> 
                             </div>
                             <div class="monthly_interest">
                                 <h5>Total Interest Paid</h5>
-                                <div id="interest">$</div>
+                                <div id="interest">${amortization['Year']}</div>
                             </div>
-                            <div class="monthly_costt">
+                            <div class="monthly_cost">
                                 <h5>Total cost of loan</h5>
-                                <div id="cost">$</div>
+                                <div id="cost">${summary['Total Payments']}</div>
                             </div>
                             <div class="monthly_date">
                                 <h5>Payoff date</h5>
@@ -93,6 +100,7 @@ export default function Calculator() {
                         </div>
                     </div>
                 </div>
+               
             </div>
             
 

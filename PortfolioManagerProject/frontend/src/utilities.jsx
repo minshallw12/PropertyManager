@@ -16,7 +16,7 @@ export const calculateMortgage = async(amount, term, rate) => {
         'term': term,
         'rate': rate,
     })
-    console.log(response.data)
+    console.log(response.data, "<-- response in utilities")
     return response.data
 }
 
