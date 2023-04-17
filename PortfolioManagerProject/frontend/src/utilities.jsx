@@ -10,6 +10,16 @@ export const signUp = async(name, email, password) => {
     return response.data.success
 }
 
+export const calculateMortgage = async(amount, term, rate) => {
+    let response = await axios.post('/user/calculator/', {
+        'amount': amount,
+        'term': term,
+        'rate': rate,
+    })
+    console.log(response.data)
+    return response.data
+}
+
 
 export const logIn = async(email, password, setUser, setLogInFlag) => {
     let response = await axios.post('/user/login/', {

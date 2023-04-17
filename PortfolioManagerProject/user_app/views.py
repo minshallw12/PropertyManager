@@ -28,6 +28,14 @@ def user_sign_up(request):
     except Exception as e:
         print(e)
         return JsonResponse({"success": False})
+    
+@api_view(["POST"])
+def firstAPIcall(request):
+    amount = request.data['amount']
+    term = request.data['term']
+    rate = request.data['rate']
+    print(amount,term, rate)
+    return HttpResponse('call fired')
 
 
 @api_view(["POST"])

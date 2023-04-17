@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { calculateMortgage } from '../utilities';
 import axios from 'axios';
 
 export default function Calculator() {
@@ -5,19 +7,6 @@ export default function Calculator() {
     const [loanTerm, setLoanTerm] = useState(30)
     const [loanRate, setLoanRate] = useState(5)
 
-
-    async function clickHandler() {
-        const amount = loanAmount;
-        const term = loanTerm;
-        const rate = loanRate;
-        // start here
-        let response = await axios.get(`https://pokeapi.co/api/v2/pokemon/ditto`)
-        console.log(response.data)
-        //return here
-        setLoanAmount(250000)
-        setLoanRate(30)
-        setLoanTerm(5)
-    }
 
 
     return (
@@ -29,7 +18,16 @@ export default function Calculator() {
                 <p>Amortization is paying off a debt over time in equal installments. Part of each payment goes toward the loan principal, and part goes toward interest. As the loan amortizes, the amount going toward principal starts out small, and gradually grows larger month by month. In an amortization schedule, you can see how much money you pay in principal and interest over time. Use this calculator to input the details of your loan and see how those payments break down over your loan term.</p>
             </div>
             <div className="display">
-                <form className="input_screen padding" onSubmit={clickHandler}>
+                <form 
+                    className="input_screen padding" 
+                    onSubmit={(event) => [
+                        event.preventDefault(),
+                        calculateMortgage(loanAmount,loanTerm,loanRate),
+                        setLoanAmount(250000),
+                        setLoanTerm(30),
+                        setLoanRate(5),
+                    ]
+                        }>
                     <div className="loan_amount">
                         <h3>Loan Amount</h3>
                         <input
