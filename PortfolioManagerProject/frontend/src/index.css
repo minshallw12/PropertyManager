@@ -76,6 +76,8 @@
     width: 200px;
     height: 200px;
 }
+
+/* calculator */
 .calculator_page {
     display: flex;
     flex-direction: column;
@@ -91,6 +93,29 @@
 }
 
 .display {
+    display: flex;
+    justify-content: center;
+}
+
+/* dashboard */
+.metrics_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 400px;
+    width: 400px;
+}
+
+.map_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    width: 400px;
+    border: 2px dotted pink
+}
+
+.dashboard {
     display: flex;
     justify-content: center;
 }

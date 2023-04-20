@@ -26,8 +26,8 @@ export const LogIn = () => {
             ]
           }
         }
-        
       >
+        
         <div className="form_title_container">
           <h3>Please Log In</h3>
         </div>

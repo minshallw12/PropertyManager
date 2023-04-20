@@ -1,0 +1,35 @@
+[
+    {
+        "id": 1,
+        "address": "301 E Lake St",
+        "city": "McCall",
+        "state": "ID",
+        "square_feet": 2325,
+        "purchase_cost": 1200000,
+        "current_income": 5000,
+        "current_upkeep": 1525,
+        "manager": 1
+    },
+    {
+        "id": 2,
+        "address": "282 Moonridge Dr",
+        "city": "McCall",
+        "state": "ID",
+        "square_feet": 1950,
+        "purchase_cost": 200000,
+        "current_income": 1750,
+        "current_upkeep": 750,
+        "manager": 1
+    },
+    {
+        "id": 3,
+        "address": "1205 Brown Dr",
+        "city": "McCall",
+        "state": "ID",
+        "square_feet": 1250,
+        "purchase_cost": 325000,
+        "current_income": 1800,
+        "current_upkeep": 900,
+        "manager": 2
+    }
+]
