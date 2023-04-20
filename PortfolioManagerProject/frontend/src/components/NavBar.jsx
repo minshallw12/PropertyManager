@@ -1,27 +1,15 @@
-import { Link} from "react-router-dom"
+import LoggedInNavBar from "./LoggedInNavBar";
+import LoggedOutNavBar from "./LoggedOutNavBar";
 import { useContext } from "react";
-import { UserContext } from "../App";
+import { isLoggedIn } from "../App";
 
 export const NavBar = () => {
-    let context = useContext(UserContext);
-    console.log(context.user, '<-- Current User')
+    let loginContext = useContext(isLoggedIn);
 
     return (
         <div className="navbar_container">
             {
-                    context.user  ?
-                        <div className="navbar">
-                            <Link className="nav_links" to={'/dashboard'}>Home</Link>
-                            <Link className="nav_links" to={'/dashboard'}>My Properties</Link> 
-                            <Link className="nav_links" to={'/dashboard'}>My Managers</Link>
-                            <Link className="nav_links" to={'/dashboard'}>Search</Link> 
-                            <Link className="nav_links" to={'/dashboard'}>Calculator</Link> 
-                        </div>
-                    :
-                        <div className="navbar">
-                            <Link className="nav_links" to={'/account'}>Create Account</Link>
-                            <Link className="nav_links" to={'/'}>Log In</Link>
-                        </div>
+                    loginContext.logInFlag  ? <LoggedInNavBar/> : <LoggedOutNavBar/>
             }
         </div>
     )

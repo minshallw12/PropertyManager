@@ -4,6 +4,7 @@ import { SignUp } from './pages/SignUp';
 import { LogIn } from './pages/LogIn';
 import Dashboard from './pages/Dashboard';
 import Error from './pages/Error';
+import Calculator from './pages/Calculator';
 
 const Router = createHashRouter([{
     path: '/',
@@ -21,7 +22,12 @@ const Router = createHashRouter([{
         {
             path: "/dashboard/",
             element: <Dashboard/>
+        },
+        {
+            path: "/dashboard/calc",
+            element: <Calculator/>
         }
+            
     ]
 }])
 
