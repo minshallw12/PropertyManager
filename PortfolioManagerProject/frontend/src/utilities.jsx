@@ -48,3 +48,14 @@ export const logOut = async(setUser, setLogInFlag) => {
         setLogInFlag(false)
     }
 }
+
+export const addManager = async(company, phone, email, address) => {
+    let response = await axios.post('/user/addmanager/' , {
+        'company': company,
+        'phone': phone,
+        'email' : email,
+        'address' : address
+    })
+    console.log(response.data.success)
+    return response.data.success
+}

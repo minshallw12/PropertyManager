@@ -3,7 +3,7 @@ from django.http import JsonResponse, HttpResponse
 from rest_framework.decorators import api_view
 from django.contrib.auth import authenticate, login, logout
 import requests
-from .models import App_User 
+from .models import * 
 from django.core.serializers import serialize
 
 
@@ -93,3 +93,18 @@ def user_log_out(request):
 def send_the_index(request):
     the_index = open('static/index.html')
     return HttpResponse(the_index)
+
+def addManager(request):
+    company = request.data['company']
+    phone = request.data['phone']
+    email = request.data['email']
+    address = request.data['address']
+
+    try:
+        # creates new user
+        new_manager = Managers.objects.create(company = company, phone = phone, email = email, address = address)
+        new_manager.save()
+        return JsonResponse({"success":True})
+    except Exception as e:
+        print(e)
+        return JsonResponse({"success": False})
