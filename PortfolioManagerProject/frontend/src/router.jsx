@@ -5,6 +5,8 @@ import { LogIn } from './pages/LogIn';
 import Dashboard from './pages/Dashboard';
 import Error from './pages/Error';
 import Calculator from './pages/Calculator';
+import ListProps from './pages/ListProps';
+import ListManagers from './pages/ListManagers';
 
 const Router = createHashRouter([{
     path: '/',
@@ -26,6 +28,14 @@ const Router = createHashRouter([{
         {
             path: "/dashboard/calc",
             element: <Calculator/>
+        },
+        {
+            path: "/dashboard/properties",
+            element: <ListProps/>
+        },
+        {
+            path: "/dashboard/managers",
+            element: <ListManagers/>
         }
             
     ]
