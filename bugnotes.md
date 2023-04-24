@@ -1,3 +1,4 @@
 # Bugs
 
-- upon login, user stays on login screen instead of navigating to dashboard.
+- manager form does not reset fields to empy after form submit. Get rid of the react-bootstrap?
+- manager list does not automatically rerender when a new manager has been added. Use a useEffect?

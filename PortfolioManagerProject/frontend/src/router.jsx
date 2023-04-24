@@ -2,6 +2,7 @@ import App from './App'
 import { createHashRouter, createBrowserRouter } from 'react-router-dom';
 import { SignUp } from './pages/SignUp';
 import { LogIn } from './pages/LogIn';
+import { getManagers } from './utilities';
 import Dashboard from './pages/Dashboard';
 import Error from './pages/Error';
 import Calculator from './pages/Calculator';
@@ -35,7 +36,8 @@ const Router = createHashRouter([{
         },
         {
             path: "/dashboard/managers",
-            element: <ListManagers/>
+            element: <ListManagers/>,
+            loader: getManagers
         }
             
     ]

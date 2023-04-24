@@ -10,5 +10,7 @@ urlpatterns = [
     path('currflag/', views.curr_flag, name= 'currflag'),
     path('logout/', views.user_log_out, name= 'signout'),
     path('addmanager/', views.addManager, name='manager'),
+    path('managers/', views.getManagers, name="managers"),
     # path('addproperty/', views.addProperty, name='property')
+    # path('properties/', views.getProperties, name='property')
 ]

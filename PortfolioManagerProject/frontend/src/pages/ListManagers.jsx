@@ -1,9 +1,20 @@
+import { useLoaderData } from "react-router-dom";
+import { useState } from "react";
 import Manager from "../components/Manager";
-import my_managers from "../data/my_managers.json";
+import my_managers from "../data/my_managers.json"; //import managers from the database instead of data.json
 import ManagerForm from "../components/ManagerForm";
+
 
 export default function ListManagers() {
 // make these a link
+    const managers = useLoaderData();
+    const [currManagers, setCurrManagers] = useState(managers)
+    console.log(currManagers)
+
+    
+
+
+
     return (
         <div className="AddManagerForm_container center">
             <div className="head_container">
@@ -11,7 +22,7 @@ export default function ListManagers() {
 
                 <div className="list_container">
                     {
-                        my_managers.map(({company}) => (
+                        managers.map(({company}) => (
                             <Manager company={company}/>
                         ))
                     }

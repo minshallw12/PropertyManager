@@ -94,17 +94,28 @@ def send_the_index(request):
     the_index = open('static/index.html')
     return HttpResponse(the_index)
 
+@api_view(['POST'])
 def addManager(request):
     company = request.data['company']
     phone = request.data['phone']
     email = request.data['email']
-    address = request.data['address']
+    office_address = request.data['address']
 
     try:
         # creates new user
-        new_manager = Managers.objects.create(company = company, phone = phone, email = email, address = address)
+        new_manager = Managers.objects.create(company = company, phone = phone, email = email, office_address = office_address)
         new_manager.save()
         return JsonResponse({"success":True})
     except Exception as e:
         print(e)
         return JsonResponse({"success": False})
+    
+@api_view(['GET'])    
+def getManagers(request):
+    print(request, 'getManagers')
+    try:
+        managers = list(Managers.objects.all().values())
+        return JsonResponse({'managers': managers})
+    except Exception as e:
+        print(e)
+        return JsonResponse({'managers':[]})

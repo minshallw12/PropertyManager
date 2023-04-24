@@ -59,3 +59,8 @@ export const addManager = async(company, phone, email, address) => {
     console.log(response.data.success)
     return response.data.success
 }
+// this return a list of managers on the managers tab
+export const getManagers = async() => {
+    let response = await axios.get("/user/managers/")
+    return response.data.managers
+}
