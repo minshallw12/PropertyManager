@@ -65,7 +65,7 @@ export const getManagers = async() => {
     return response.data.managers
 }
 
-export const addProperty = async(street,city,state,square_feet,purchase_cost,current_income,current_upkeep, manager) => {
+export const addProperty = async(street,city,state,square_feet,purchase_cost,current_income,current_upkeep, manager, portfolio_id) => {
     let response = await axios.post('/user/addproperty/' , {            // breadcrumb to urls
         'street': street,
         'city': city,
@@ -74,7 +74,8 @@ export const addProperty = async(street,city,state,square_feet,purchase_cost,cur
         'purchase_cost': purchase_cost,
         'current_income' : current_income,
         'current_upkeep' : current_upkeep,
-        'manager': manager
+        'manager': manager,
+        'portfolio_id': portfolio_id
     })
     console.log(response.data.success)
     return response.data.success

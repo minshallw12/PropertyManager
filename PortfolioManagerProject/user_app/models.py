@@ -28,8 +28,8 @@ class Addresses(models.Model):
     purchase_cost = models.BigIntegerField()
     current_income = models.BigIntegerField()
     current_upkeep = models.BigIntegerField()
-    portfolio = models.ForeignKey(App_User, on_delete=models.CASCADE, null=False)
-    manager = models.ForeignKey(Managers, on_delete=models.CASCADE, null=False)
+    portfolio = models.ForeignKey(App_User, on_delete=models.CASCADE, null=True)
+    manager = models.ForeignKey(Managers, on_delete=models.CASCADE, null=True)
 
     def __str__(self) -> str:
         return f"{self.address} | {self.city}"

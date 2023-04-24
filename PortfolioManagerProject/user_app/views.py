@@ -131,6 +131,7 @@ def addProperty(request):
     current_income = request.data['current_income']
     current_upkeep = request.data['current_upkeep']
     manager = request.data['manager']
+    portfolio_id = request.data['portfolio_id']
 
     try:
         # creates new property in the database
@@ -142,7 +143,8 @@ def addProperty(request):
                 purchase_cost = purchase_cost,
                 current_income = current_income, 
                 current_upkeep = current_upkeep,
-                manager_id = manager
+                manager_id = manager,
+                portfolio_id = portfolio_id
             )
         new_property.save()
         return JsonResponse({"success":True})

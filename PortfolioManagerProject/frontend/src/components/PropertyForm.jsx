@@ -13,15 +13,25 @@ export default function PropertyForm() {
     const [current_income, setCurrent_income] = useState(null)
     const [current_upkeep, setCurrent_upkeep] = useState(null)
     const [manager, setManager] = useState(null)
-
-    console.log(street, city, state, square_feet, purchase_cost, current_income, current_upkeep, manager)
+    const [portfolio_id, setPortfolio_id] = useState(7)
+    console.log(street, city, state, square_feet, purchase_cost, current_income, current_upkeep, manager, portfolio_id)
 
   return (
     <div>
         <h3>Add new property</h3>
          <Form onSubmit={(event) => [
             event.preventDefault(),
-            addProperty(street,city,state,square_feet,purchase_cost,current_income,current_upkeep,manager),
+            addProperty(
+                street,
+                city,
+                state,
+                square_feet,
+                purchase_cost,
+                current_income,
+                current_upkeep,
+                manager,
+                portfolio_id
+            ),
             setStreet(""),
             setCity(""),
             setState(""),
