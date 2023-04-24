@@ -119,3 +119,33 @@ def getManagers(request):
     except Exception as e:
         print(e)
         return JsonResponse({'managers':[]})
+
+@api_view(['POST'])
+def addProperty(request):
+    print(request.data)
+    street = request.data['street']
+    city = request.data['city']
+    state = request.data['state']
+    square_feet = request.data['square_feet']
+    purchase_cost = request.data['purchase_cost']
+    current_income = request.data['current_income']
+    current_upkeep = request.data['current_upkeep']
+    manager = request.data['manager']
+
+    try:
+        # creates new property in the database
+        new_property = Addresses.objects.create(
+                address = street, 
+                city = city, 
+                state = state, 
+                square_feet = square_feet,
+                purchase_cost = purchase_cost,
+                current_income = current_income, 
+                current_upkeep = current_upkeep,
+                manager_id = manager
+            )
+        new_property.save()
+        return JsonResponse({"success":True})
+    except Exception as e:
+        print(e)
+        return JsonResponse({"success": False})
