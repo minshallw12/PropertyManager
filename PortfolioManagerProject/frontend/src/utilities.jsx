@@ -101,3 +101,10 @@ export const getPropertyDetails = async(id) => {
     let response = await axios.get(`/user/property/${id.params.id}`)
     return response.data.data
 }
+
+// delete functionality
+export const deleteProperty = async(id) => {
+    let response = await axios.delete(`/user/deletemanager/${id}`)
+    console.log(response.data)
+    return response.data
+}

@@ -211,3 +211,12 @@ def getPropertyDetails(request, id):
         print(e)
         return JsonResponse({'data': None})
     
+@api_view(['DELETE'])
+def deleteManager(request, id):
+    try:
+        Managers.objects.filter(id=id).delete()
+        return JsonResponse( {'success': True} )
+    except Exception as e:
+        print(e)
+        return JsonResponse( {'success': False} )
+    
