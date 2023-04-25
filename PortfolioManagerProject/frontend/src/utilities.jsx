@@ -83,6 +83,7 @@ export const getManagers = async() => {
     return response.data.managers
 }
 
+// manager details loader
 export const getManagerDetails = async(id) => {
     let response = await axios.get(`/user/manager/${id.params.id}`)
     // console.log(response.data.data)
