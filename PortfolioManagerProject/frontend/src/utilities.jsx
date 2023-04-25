@@ -48,7 +48,7 @@ export const logOut = async(setUser, setLogInFlag) => {
     }
 }
 
-
+// Create r u d
 export const addManager = async(company, phone, email, address) => {
     let response = await axios.post('/user/addmanager/' , {
         'company': company,
@@ -76,33 +76,35 @@ export const addProperty = async(street,city,state,square_feet,purchase_cost,cur
     return response.data.success
 }
 
-
-// managers loader
+// c Read u d
 export const getManagers = async() => {
     let response = await axios.get("/user/managers/")
     return response.data.managers
 }
-
-// manager details loader
 export const getManagerDetails = async(id) => {
     let response = await axios.get(`/user/manager/${id.params.id}`)
     // console.log(response.data.data)
     return response.data.data
 } 
-
-//properties loader
 export const getProperties = async() => {
     let response = await axios.get("/user/properties/")
     return response.data.properties
 }
-
-// property details loader
 export const getPropertyDetails = async(id) => {
     let response = await axios.get(`/user/property/${id.params.id}`)
     return response.data.data
 }
 
-// delete functionality
+// c r Update d
+export const updateManager = async(id, data) => {
+    console.log(id)
+    let response = await axios.put(`/user/updatemanager/${id}`, data)
+    console.log(response.data)
+    return response.data
+}
+
+
+// c r u Delete
 export const deleteManager = async(id) => {
     let response = await axios.delete(`/user/deletemanager/${id}`)
     console.log(response.data)

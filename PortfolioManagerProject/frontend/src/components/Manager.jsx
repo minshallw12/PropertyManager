@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import { deleteManager } from "../utilities";
 
-
-
 export default function Manager({id, company}) {
     const url = `manager/${id}`
 

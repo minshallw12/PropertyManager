@@ -6,6 +6,8 @@ import requests
 from .models import * 
 from django.core.serializers import serialize
 import json
+from django.shortcuts import get_object_or_404
+
 
 # Create your views here.
 @api_view(["POST"])
@@ -229,4 +231,18 @@ def deleteProperty(request, id):
     except Exception as e:
         print(e)
         return JsonResponse( {'success': False} )
+    
+@api_view(['PUT'])
+def updateManager(request, id):
+    manager = get_object_or_404(Managers, id=id)
+
+    if request.method == 'PUT':
+        manager.company = request.POST.get('company', manager.company)
+        manager.phone = request.POST.get('phone', manager.phone)
+        manager.email = request.POST.get('email', manager.email)
+        manager.office_address = request.POST.get('address', manager.office_address)
+        manager.save()
+        return JsonResponse({'success': True})
+
+    return JsonResponse({'success': False})
     
