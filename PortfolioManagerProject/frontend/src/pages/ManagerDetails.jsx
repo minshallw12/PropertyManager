@@ -3,8 +3,8 @@ import { useLoaderData } from "react-router-dom";
 
 export default function ManagerDetails() {
 
-    // const manager = useLoaderData();
-    // console.log(manager)
+    const manager = useLoaderData();
+    console.log(manager, 'managerdetails.jsx')
 
     return (
         <div className="details_panel">

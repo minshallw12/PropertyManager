@@ -83,11 +83,11 @@ export const getManagers = async() => {
     return response.data.managers
 }
 
-// export const getManagerDetails = async(id) => {
-//     let response = await axios.get(`/user/managers/manager/${id}`)
-//     console.log(response)
-//     return response.data
-// } 
+export const getManagerDetails = async(id) => {
+    let response = await axios.get(`/user/manager/${id.params.id}`)
+    // console.log(response.data.data)
+    return response.data.data
+} 
 
 //properties loader
 export const getProperties = async() => {

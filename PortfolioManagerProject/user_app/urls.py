@@ -13,5 +13,5 @@ urlpatterns = [
     path('managers/', views.getManagers, name="managers"),
     path('addproperty/', views.addProperty, name='property'),
     path('properties/', views.getProperties, name='property'),
-    # path('managers/manager/<int:id>', views.getManagerDetails, name='manager_details')
+    path('manager/<int:id>', views.getManagerDetails, name='manager_details')
 ]

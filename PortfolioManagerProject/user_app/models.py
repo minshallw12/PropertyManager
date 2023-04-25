@@ -18,7 +18,7 @@ class Managers (models.Model):
     office_address = models.CharField(max_length=254, default='unknown')
 
     def __str__(self) -> str:
-        return f"{self.company}"
+        return f"{self.company} | Dunder"
 
 class Addresses(models.Model):
     address = models.CharField(blank=False, null=False, unique=True, max_length=254)

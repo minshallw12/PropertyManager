@@ -1,5 +1,4 @@
 import Property from '../components/Property';
-import my_props from '../data/my_props.json';
 import PropertyForm from '../components/PropertyForm';
 import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';

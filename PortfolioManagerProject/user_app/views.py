@@ -5,8 +5,6 @@ from django.contrib.auth import authenticate, login, logout
 import requests
 from .models import * 
 from django.core.serializers import serialize
-
-
 import json
 
 # Create your views here.
@@ -162,12 +160,30 @@ def getProperties(request):
         print(e)
         return JsonResponse({'properties':[]})
     
-# @api_view(['GET'])    
-# def getManagerDetails(request, id):
-#     print(request, 'getManagerDetails')
-#     try:
-#         manager = Managers.objects.get(id = id)
-#         return JsonResponse({'manager': manager})
-#     except Exception as e:
-#         print(e)
-#         return JsonResponse({'manager': None})
+
+# This function serializes the data to return an object
+class CustomeEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, Managers):
+            return {
+                "company": obj.company, 
+                "phone": obj.phone, 
+                "email": obj.email, 
+                "office_address": obj.office_address
+            }
+        return super().default(obj)
+
+@api_view(['GET'])    
+def getManagerDetails(request, id):
+    print(request, 'getManagerDetails')
+    try:
+        manager = Managers.objects.get(id = id)
+        print(manager, 'manager in views')
+        json_data = json.dumps(manager, cls=CustomeEncoder)
+        print(json_data)
+    #response is failing because manager is NOT an object and not proper json
+        return JsonResponse({'data': json_data})
+    except Exception as e:
+        print(e)
+        return JsonResponse({'data': None})
+    
