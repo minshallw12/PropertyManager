@@ -16,4 +16,6 @@ urlpatterns = [
     path('manager/<int:id>', views.getManagerDetails, name='manager_details'),
     path('property/<int:id>', views.getPropertyDetails, name='property'),
     path('deletemanager/<int:id>', views.deleteManager, name='manager_delete'),
+    path('deleteproperty/<int:id>', views.deleteProperty, name='property_delete'),
+
 ]

@@ -220,3 +220,13 @@ def deleteManager(request, id):
         print(e)
         return JsonResponse( {'success': False} )
     
+
+@api_view(['DELETE'])
+def deleteProperty(request, id):
+    try:
+        Addresses.objects.filter(id=id).delete()
+        return JsonResponse( {'success': True} )
+    except Exception as e:
+        print(e)
+        return JsonResponse( {'success': False} )
+    
