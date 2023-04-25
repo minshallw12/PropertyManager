@@ -1,16 +1,15 @@
 import App from './App'
-import { createHashRouter, createBrowserRouter } from 'react-router-dom';
+import { createHashRouter } from 'react-router-dom';
 import { SignUp } from './pages/SignUp';
 import { LogIn } from './pages/LogIn';
-import { getManagers } from './utilities';
-import { getProperties } from './utilities';
-import { getManagerDetails } from './utilities';
+import { getManagers, getProperties, getManagerDetails, getPropertyDetails } from './utilities';
 import Dashboard from './pages/Dashboard';
 import Error from './pages/Error';
 import Calculator from './pages/Calculator';
 import ListProps from './pages/ListProps';
 import ListManagers from './pages/ListManagers';
 import ManagerDetails from './pages/ManagerDetails';
+import PropertyDetails from './pages/PropertyDetail';
 
 const Router = createHashRouter([{
     path: '/',
@@ -48,6 +47,11 @@ const Router = createHashRouter([{
             path: '/dashboard/managers/manager/:id',
             element: <ManagerDetails/>,
             loader: getManagerDetails
+        },
+        {
+            path: '/dashboard/properties/property/:id',
+            element: <PropertyDetails/>,
+            loader: getPropertyDetails
         }
             
     ]

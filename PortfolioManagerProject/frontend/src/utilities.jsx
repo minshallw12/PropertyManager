@@ -95,3 +95,9 @@ export const getProperties = async() => {
     let response = await axios.get("/user/properties/")
     return response.data.properties
 }
+
+// property details loader
+export const getPropertyDetails = async(id) => {
+    let response = await axios.get(`/user/property/${id.params.id}`)
+    return response.data.data
+}

@@ -18,8 +18,8 @@ export default function ListProps() {
 
                 <div className="list_container">
                     {
-                        properties.map(({address}) => (
-                            <Property address={address}/>
+                        properties.map(({id, address}) => (
+                            <Property id={id} address={address}/>
                         ))
                     }
                 </div>

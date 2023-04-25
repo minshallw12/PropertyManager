@@ -1,7 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import { useState } from "react";
 import Manager from "../components/Manager";
-import my_managers from "../data/my_managers.json"; //import managers from the database instead of data.json
 import ManagerForm from "../components/ManagerForm";
 
 

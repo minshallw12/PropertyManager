@@ -171,6 +171,17 @@ class CustomeEncoder(json.JSONEncoder):
                 "email": obj.email, 
                 "office_address": obj.office_address
             }
+        elif isinstance(obj,Addresses):
+            return {
+                "street": obj.address,
+                "city": obj.city,
+                "state": obj.state,
+                "square_feet": obj.square_feet,
+                "purchase_cost": obj.purchase_cost,
+                "current_income": obj.current_income,
+                "current_upkeep": obj.current_upkeep,
+                "manager": obj.manager.company
+            }
         return super().default(obj)
 
 @api_view(['GET'])    
@@ -182,6 +193,19 @@ def getManagerDetails(request, id):
         json_data = json.dumps(manager, cls=CustomeEncoder)
         print(json_data)
     #response is failing because manager is NOT an object and not proper json
+        return JsonResponse({'data': json_data})
+    except Exception as e:
+        print(e)
+        return JsonResponse({'data': None})
+    
+@api_view(['GET'])    
+def getPropertyDetails(request, id):
+    print(request, 'getPropertyDetails')
+    try:
+        property = Addresses.objects.get(id = id)
+        print(property, "property in views")
+        json_data = json.dumps(property, cls=CustomeEncoder)
+        print(json_data)
         return JsonResponse({'data': json_data})
     except Exception as e:
         print(e)
