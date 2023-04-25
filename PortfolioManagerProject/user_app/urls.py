@@ -11,6 +11,7 @@ urlpatterns = [
     path('logout/', views.user_log_out, name= 'signout'),
     path('addmanager/', views.addManager, name='manager'),
     path('managers/', views.getManagers, name="managers"),
-    path('addproperty/', views.addProperty, name='property')
-    # path('properties/', views.getProperties, name='property')
+    path('addproperty/', views.addProperty, name='property'),
+    path('properties/', views.getProperties, name='property'),
+    # path('managers/manager/<int:id>', views.getManagerDetails, name='manager_details')
 ]

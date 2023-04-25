@@ -151,3 +151,23 @@ def addProperty(request):
     except Exception as e:
         print(e)
         return JsonResponse({"success": False})
+    
+@api_view(['GET'])    
+def getProperties(request):
+    print(request, 'getProperties')
+    try:
+        properties = list(Addresses.objects.all().values())
+        return JsonResponse({'properties': properties})
+    except Exception as e:
+        print(e)
+        return JsonResponse({'properties':[]})
+    
+# @api_view(['GET'])    
+# def getManagerDetails(request, id):
+#     print(request, 'getManagerDetails')
+#     try:
+#         manager = Managers.objects.get(id = id)
+#         return JsonResponse({'manager': manager})
+#     except Exception as e:
+#         print(e)
+#         return JsonResponse({'manager': None})

@@ -1,15 +1,14 @@
 import Property from '../components/Property';
 import my_props from '../data/my_props.json';
 import PropertyForm from '../components/PropertyForm';
-import { UserContext } from "../App";
-import { useContext } from 'react';
-
-// const portfolio_id = useContext(UserContext);
+import { useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
 
 
 export default function ListProps() {
-console.log(useContext(UserContext))
-
+    const properties = useLoaderData();
+    const [currProperties, setCurrProperties] = useState(properties)
+    console.log(currProperties)
 
     return (
         <div className="AddPropForm_container center">
@@ -20,7 +19,7 @@ console.log(useContext(UserContext))
 
                 <div className="list_container">
                     {
-                        my_props.map(({address}) => (
+                        properties.map(({address}) => (
                             <Property address={address}/>
                         ))
                     }

@@ -22,8 +22,8 @@ export default function ListManagers() {
 
                 <div className="list_container">
                     {
-                        managers.map(({company}) => (
-                            <Manager company={company}/>
+                        managers.map(({id, company}) => (
+                            <Manager id={id} company={company}/>
                         ))
                     }
                 </div>

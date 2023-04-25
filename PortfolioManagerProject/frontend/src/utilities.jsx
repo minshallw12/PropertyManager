@@ -40,7 +40,6 @@ export const currFlag = async() => {
     return response.data
 }
 
-
 export const logOut = async(setUser, setLogInFlag) => {
     let response = await axios.post('/user/logout/')
     if(response.data.logout){
@@ -48,6 +47,7 @@ export const logOut = async(setUser, setLogInFlag) => {
         setLogInFlag(false)
     }
 }
+
 
 export const addManager = async(company, phone, email, address) => {
     let response = await axios.post('/user/addmanager/' , {
@@ -58,11 +58,6 @@ export const addManager = async(company, phone, email, address) => {
     })
     console.log(response.data.success)
     return response.data.success
-}
-// this return a list of managers on the managers tab
-export const getManagers = async() => {
-    let response = await axios.get("/user/managers/")
-    return response.data.managers
 }
 
 export const addProperty = async(street,city,state,square_feet,purchase_cost,current_income,current_upkeep, manager, portfolio_id) => {
@@ -79,4 +74,23 @@ export const addProperty = async(street,city,state,square_feet,purchase_cost,cur
     })
     console.log(response.data.success)
     return response.data.success
+}
+
+
+// managers loader
+export const getManagers = async() => {
+    let response = await axios.get("/user/managers/")
+    return response.data.managers
+}
+
+// export const getManagerDetails = async(id) => {
+//     let response = await axios.get(`/user/managers/manager/${id}`)
+//     console.log(response)
+//     return response.data
+// } 
+
+//properties loader
+export const getProperties = async() => {
+    let response = await axios.get("/user/properties/")
+    return response.data.properties
 }

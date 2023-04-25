@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { addProperty } from '../utilities';
 import { useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
 
 export default function PropertyForm() {
     const [street, setStreet] = useState(null)
@@ -13,7 +14,7 @@ export default function PropertyForm() {
     const [current_income, setCurrent_income] = useState(null)
     const [current_upkeep, setCurrent_upkeep] = useState(null)
     const [manager, setManager] = useState(null)
-    const [portfolio_id, setPortfolio_id] = useState(7)
+    const [portfolio_id, setPortfolio_id] = useState(1)
     console.log(street, city, state, square_feet, purchase_cost, current_income, current_upkeep, manager, portfolio_id)
 
   return (
