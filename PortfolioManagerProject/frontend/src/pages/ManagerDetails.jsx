@@ -6,9 +6,7 @@ import ManagerEditForm from "../components/ManagerEditForm";
 
 export default function ManagerDetails() {
     const {id} = useParams();
-    console.log(id)
     const data = JSON.parse(useLoaderData())
-    console.log(data, 'data loaded to ManagerDetails')
     const [editFlag, setEditFlag] = useState(false)
 
     return (

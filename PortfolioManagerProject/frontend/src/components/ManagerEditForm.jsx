@@ -37,4 +37,4 @@ export default function ManagerEditForm({id}) { // id is passed in as prop
             </form>
         </div>
     )
-}
+};
