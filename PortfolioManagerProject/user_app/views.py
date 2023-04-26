@@ -244,4 +244,22 @@ def updateManager(request, id):
         return JsonResponse({'success': True})
 
     return JsonResponse({'success': False})
+
+@api_view(['PUT'])
+def updateProperty(request, id):
+    my_property = get_object_or_404(Addresses, id=id)
+
+    if request.method == 'PUT':
+        my_property.address = request.data.get('address', my_property.address)
+        my_property.city = request.data.get('city', my_property.city)
+        my_property.state = request.data.get('state', my_property.state)
+        my_property.square_feet = request.data.get('square_feet', my_property.square_feet)
+        my_property.purchase_cost = request.data.get('purchase_cost', my_property.purchase_cost)
+        my_property.current_income = request.data.get('current_income', my_property.current_income)
+        my_property.current_upkeep = request.data.get('current_upkeep', my_property.current_upkeep)
+        my_property.manager = request.data.get('manager', my_property.manager)
+        my_property.save()
+        return JsonResponse({'success': True})
+
+    return JsonResponse({'success': False})
     

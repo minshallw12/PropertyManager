@@ -30,7 +30,17 @@ export default function PropertyEditForm({id}) { // id is passed in as prop
 
     const updateProperty = async() => {
         console.log(id, 'id')
-        let response = await axios.put(`/user/updateproperty/${id}`, {'company':company, 'phone':phone, 'email':email, 'office_address': office_address}) // this is undefined
+        let response = await axios.put(`/user/updateproperty/${id}`, {
+            'street':street, 
+            'city':city, 
+            'state':state, 
+            'square_feet': square_feet,
+            'purchase_cost:': purchase_cost,
+            'current_income': current_income,
+            'current_upkeep': current_upkeep,
+            'manager': manager
+
+        })
         console.log(response.data)
         return response.data
     }
@@ -58,6 +68,7 @@ export default function PropertyEditForm({id}) { // id is passed in as prop
                 <input type="text" placeholder="current_income" onChange={(e) => setCurrent_income(e.target.value)}/>
                 <input type="text" placeholder="current_upkeep" onChange={(e) => setCurrent_upkeep(e.target.value)}/>
                 <select type="dropdown" placeholder="manager" onChange={(e) => setManager(e.target.value)}>
+                    <option>Choose a Property Manager</option>
                     {
                         managersList.map(({id, company}) => (
                             <option value={id}>{company}</option>

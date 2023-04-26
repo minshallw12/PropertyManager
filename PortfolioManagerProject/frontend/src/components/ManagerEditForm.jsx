@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from 'axios';
 
 
-export default function ManagerEditForm({id}) { // id is passed in as prop
+export default function ManagerEditForm({id}) {
     const [company, setCompany] = useState('')
     const [phone, setPhone] = useState('')
     const [email, setEmail] = useState('')
@@ -12,7 +12,11 @@ export default function ManagerEditForm({id}) { // id is passed in as prop
 
     const updateManager = async() => {
         console.log(id, 'id')
-        let response = await axios.put(`/user/updatemanager/${id}`, {'company':company, 'phone':phone, 'email':email, 'office_address': office_address}) // this is undefined
+        let response = await axios.put(`/user/updatemanager/${id}`, {
+            'company':company, 
+            'phone':phone, 
+            'email':email, 
+            'office_address': office_address})
         console.log(response.data)
         return response.data
     }
