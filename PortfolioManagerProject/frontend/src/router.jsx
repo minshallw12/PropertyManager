@@ -2,7 +2,7 @@ import App from './App'
 import { createHashRouter } from 'react-router-dom';
 import { SignUp } from './pages/SignUp';
 import { LogIn } from './pages/LogIn';
-import { getManagers, getProperties, getManagerDetails, getPropertyDetails } from './utilities';
+import { getManagers, getProperties,getPropertyDetails, getManagerID, getManagerDetails } from './utilities';
 import Dashboard from './pages/Dashboard';
 import Error from './pages/Error';
 import Calculator from './pages/Calculator';
@@ -46,7 +46,8 @@ const Router = createHashRouter([{
         {
             path: '/dashboard/managers/manager/:id',
             element: <ManagerDetails/>,
-            loader: getManagerDetails
+            loader: getManagerDetails,
+
         },
         {
             path: '/dashboard/properties/property/:id',

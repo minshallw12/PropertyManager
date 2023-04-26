@@ -193,9 +193,8 @@ def getManagerDetails(request, id):
         manager = Managers.objects.get(id = id)
         print(manager, 'manager in views')
         json_data = json.dumps(manager, cls=CustomeEncoder)
-        print(json_data)
-    #response is failing because manager is NOT an object and not proper json
-        return JsonResponse({'data': json_data})
+        print( json_data, 'json_data')
+        return JsonResponse({'data': json_data,'id':id})
     except Exception as e:
         print(e)
         return JsonResponse({'data': None})
@@ -237,10 +236,10 @@ def updateManager(request, id):
     manager = get_object_or_404(Managers, id=id)
 
     if request.method == 'PUT':
-        manager.company = request.POST.get('company', manager.company)
-        manager.phone = request.POST.get('phone', manager.phone)
-        manager.email = request.POST.get('email', manager.email)
-        manager.office_address = request.POST.get('address', manager.office_address)
+        manager.company = request.data.get('company', manager.company)
+        manager.phone = request.data.get('phone', manager.phone)
+        manager.email = request.data.get('email', manager.email)
+        manager.office_address = request.data.get('office_address', manager.office_address)
         manager.save()
         return JsonResponse({'success': True})
 

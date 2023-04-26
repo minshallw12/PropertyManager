@@ -83,9 +83,21 @@ export const getManagers = async() => {
 }
 export const getManagerDetails = async(id) => {
     let response = await axios.get(`/user/manager/${id.params.id}`)
-    // console.log(response.data.data)
+    console.log(response.data, 'ME!!')
     return response.data.data
-} 
+}
+export const getManagerID = async(id) => {
+    let response = await axios.get(`/user/manager/${id.params.id}`)
+    console.log(response.data, 'ME!!')
+    return response.data.id
+}
+
+// export const getManager = async()=> {
+//     let response = await Promise.all([getManagerDetails(),getManagerID()])
+//     console.log(response.data)
+//     return response.data
+// }
+
 export const getProperties = async() => {
     let response = await axios.get("/user/properties/")
     return response.data.properties
@@ -96,9 +108,9 @@ export const getPropertyDetails = async(id) => {
 }
 
 // c r Update d
-export const updateManager = async(id, data) => {
-    console.log(id)
-    let response = await axios.put(`/user/updatemanager/${id}`, data)
+export const updateManager = async(id, company, phone, email, office_address) => {
+    console.log(id, 'id')
+    let response = await axios.put(`/user/updatemanager/${id.params.id}`, {'company':company, 'phone':phone, 'email':email, 'office_address': office_address}) // this is undefined
     console.log(response.data)
     return response.data
 }

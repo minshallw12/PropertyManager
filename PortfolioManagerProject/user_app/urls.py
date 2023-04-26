@@ -17,6 +17,6 @@ urlpatterns = [
     path('property/<int:id>', views.getPropertyDetails, name='property'),
     path('deletemanager/<int:id>', views.deleteManager, name='manager_delete'),
     path('deleteproperty/<int:id>', views.deleteProperty, name='property_delete'),
-    path('updateManager/<int:id>', views.updateManager, name="update_manager")
+    path('updatemanager/<int:id>', views.updateManager, name="update_manager")
 
 ]
