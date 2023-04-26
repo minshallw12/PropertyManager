@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import axios from 'axios';
-import my_managers from '../data/my_managers.json'; // will need a loader to get the options for 
 import { getManagers } from "../utilities";
+import axios from 'axios';
 
-export default function PropertyEditForm({id}) { // id is passed in as prop
-    const [street, setStreet] = useState(null)
+
+
+export default function PropertyEditForm({id}) {
+    const [address, setAddress] = useState(null)
     const [city, setCity] =  useState(null)
     const [state, setState] = useState(null)
     const [square_feet, setSquare_feet] = useState(null)
@@ -14,7 +15,7 @@ export default function PropertyEditForm({id}) { // id is passed in as prop
     const [manager, setManager] = useState(null)
     const [portfolio_id, setPortfolio_id] = useState(1)
     const [managersList, setManagersList] = useState([])
-    console.log(street, city, state, square_feet, purchase_cost, current_income, current_upkeep, manager, portfolio_id)
+    console.log(address, city, state, square_feet, purchase_cost, current_income, current_upkeep, manager, portfolio_id)
 
     useEffect(() => {
         async function fetchManagers() {
@@ -28,20 +29,32 @@ export default function PropertyEditForm({id}) { // id is passed in as prop
         fetchManagers();
       }, []);
 
+    // helper function creates an instance from the manager selector
+    function getInstance(int,lst) {
+        for (let i=0; i<lst.length; i++) {
+            console.log(lst[i].id)
+            if (lst[i].id === int) {
+                console.log(lst[i])
+                return lst[i]
+            } else {
+                console.log('instance failed')
+            }
+        }
+    }
+    
+
     const updateProperty = async() => {
         console.log(id, 'id')
         let response = await axios.put(`/user/updateproperty/${id}`, {
-            'street':street, 
+            'address':address, 
             'city':city, 
             'state':state, 
             'square_feet': square_feet,
-            'purchase_cost:': purchase_cost,
+            'purchase_cost': purchase_cost,
             'current_income': current_income,
             'current_upkeep': current_upkeep,
             'manager': manager
-
         })
-        console.log(response.data)
         return response.data
     }
 
@@ -51,7 +64,7 @@ export default function PropertyEditForm({id}) { // id is passed in as prop
             <form onSubmit={(e) => {
                 e.preventDefault();
                 updateProperty();
-                setStreet(""),
+                setAddress(""),
                 setCity(""),
                 setState(""),
                 setSquare_feet(""),
@@ -60,14 +73,14 @@ export default function PropertyEditForm({id}) { // id is passed in as prop
                 setCurrent_upkeep(""),
                 setManager("")
             }}>
-                <input type="text" placeholder="street" onChange={(e) => setStreet(e.target.value)}/>
+                <input type="text" placeholder="address" onChange={(e) => setAddress(e.target.value)}/>
                 <input type="text" placeholder="city" onChange={(e) => setCity(e.target.value)}/>
                 <input type="text" placeholder="state" onChange={(e) => setState(e.target.value)}/>
                 <input type="text" placeholder="square_feet" onChange={(e) => setSquare_feet(e.target.value)}/>
                 <input type="text" placeholder="purchase_cost" onChange={(e) => setPurchase_cost(e.target.value)}/>
                 <input type="text" placeholder="current_income" onChange={(e) => setCurrent_income(e.target.value)}/>
                 <input type="text" placeholder="current_upkeep" onChange={(e) => setCurrent_upkeep(e.target.value)}/>
-                <select type="dropdown" placeholder="manager" onChange={(e) => setManager(e.target.value)}>
+                <select type="dropdown" placeholder="manager" onChange={(e) => setManager(getInstance(e.target.value, managersList))}>
                     <option>Choose a Property Manager</option>
                     {
                         managersList.map(({id, company}) => (
