@@ -6,6 +6,8 @@ import requests
 from .models import * 
 from django.core.serializers import serialize
 import json
+from django.shortcuts import get_object_or_404
+
 
 # Create your views here.
 @api_view(["POST"])
@@ -191,9 +193,8 @@ def getManagerDetails(request, id):
         manager = Managers.objects.get(id = id)
         print(manager, 'manager in views')
         json_data = json.dumps(manager, cls=CustomeEncoder)
-        print(json_data)
-    #response is failing because manager is NOT an object and not proper json
-        return JsonResponse({'data': json_data})
+        print( json_data, 'json_data')
+        return JsonResponse({'data': json_data,'id':id})
     except Exception as e:
         print(e)
         return JsonResponse({'data': None})
@@ -210,4 +211,55 @@ def getPropertyDetails(request, id):
     except Exception as e:
         print(e)
         return JsonResponse({'data': None})
+    
+@api_view(['DELETE'])
+def deleteManager(request, id):
+    try:
+        Managers.objects.filter(id=id).delete()
+        return JsonResponse( {'success': True} )
+    except Exception as e:
+        print(e)
+        return JsonResponse( {'success': False} )
+    
+
+@api_view(['DELETE'])
+def deleteProperty(request, id):
+    try:
+        Addresses.objects.filter(id=id).delete()
+        return JsonResponse( {'success': True} )
+    except Exception as e:
+        print(e)
+        return JsonResponse( {'success': False} )
+    
+@api_view(['PUT'])
+def updateManager(request, id):
+    manager = get_object_or_404(Managers, id=id)
+
+    if request.method == 'PUT':
+        manager.company = request.data.get('company', manager.company)
+        manager.phone = request.data.get('phone', manager.phone)
+        manager.email = request.data.get('email', manager.email)
+        manager.office_address = request.data.get('office_address', manager.office_address)
+        manager.save()
+        return JsonResponse({'success': True})
+
+    return JsonResponse({'success': False})
+
+@api_view(['PUT'])
+def updateProperty(request, id):
+    my_property = get_object_or_404(Addresses, id=id)
+
+    if request.method == 'PUT':
+        my_property.address = request.data.get('address', my_property.address)
+        my_property.city = request.data.get('city', my_property.city)
+        my_property.state = request.data.get('state', my_property.state)
+        my_property.square_feet = request.data.get('square_feet', my_property.square_feet)
+        my_property.purchase_cost = request.data.get('purchase_cost', my_property.purchase_cost)
+        my_property.current_income = request.data.get('current_income', my_property.current_income)
+        my_property.current_upkeep = request.data.get('current_upkeep', my_property.current_upkeep)
+        my_property.manager = request.data.get('manager', my_property.manager)
+        my_property.save()
+        return JsonResponse({'success': True})
+
+    return JsonResponse({'success': False})
     

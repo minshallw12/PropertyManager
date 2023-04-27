@@ -36,8 +36,8 @@ export default function ManagerForm() {
                     <Form.Control type="text" placeholder="Address" />
                 </Form.Group>
                 <Button variant="primary" type="submit">
-                Submit
-            </Button>
+                    Submit
+                </Button>
             </Form>
         </div>
     )

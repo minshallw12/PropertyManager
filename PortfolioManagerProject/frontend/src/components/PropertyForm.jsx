@@ -1,9 +1,10 @@
-import my_managers from '../data/my_managers.json'; // will need a loader to get the options for 
+import { useState, useEffect } from 'react';
+// import { useLoaderData } from 'react-router-dom'; // put this loader call inside the form
+import { addProperty, getManagers } from '../utilities';
+// import my_managers from '../data/my_managers.json'; // will need a loader to get the options for 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { addProperty } from '../utilities';
-import { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+
 
 export default function PropertyForm() {
     const [street, setStreet] = useState(null)
@@ -15,7 +16,20 @@ export default function PropertyForm() {
     const [current_upkeep, setCurrent_upkeep] = useState(null)
     const [manager, setManager] = useState(null)
     const [portfolio_id, setPortfolio_id] = useState(1)
-    console.log(street, city, state, square_feet, purchase_cost, current_income, current_upkeep, manager, portfolio_id)
+    const [managersList, setManagersList] = useState([])
+    console.log(street, city, state, square_feet, purchase_cost, current_income, current_upkeep, manager, portfolio_id, managersList)
+
+    useEffect(() => {
+        async function fetchManagers() {
+          try {
+            const response = await getManagers();
+            setManagersList(response);
+          } catch (error) {
+            console.log(error);
+          }
+        }
+        fetchManagers();
+      }, []);
 
   return (
     <div>
@@ -67,12 +81,11 @@ export default function PropertyForm() {
             <Form.Select aria-label="Default select example" onChange={(event) => setManager(event.target.value)}>
                 <option>Choose a Property Manager</option>
                 {
-                    my_managers.map(({id, company}) => (
+                    managersList.map(({id, company}) => (
                         <option value={id}>{company}</option>
                     ))
                 }
             </Form.Select> 
-          
             <Button variant="primary" type="submit">
                 Submit
             </Button>

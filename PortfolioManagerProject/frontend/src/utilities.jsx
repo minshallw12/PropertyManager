@@ -48,7 +48,7 @@ export const logOut = async(setUser, setLogInFlag) => {
     }
 }
 
-
+// Create r u d
 export const addManager = async(company, phone, email, address) => {
     let response = await axios.post('/user/addmanager/' , {
         'company': company,
@@ -76,28 +76,54 @@ export const addProperty = async(street,city,state,square_feet,purchase_cost,cur
     return response.data.success
 }
 
-
-// managers loader
+// c Read u d
 export const getManagers = async() => {
     let response = await axios.get("/user/managers/")
     return response.data.managers
 }
-
-// manager details loader
 export const getManagerDetails = async(id) => {
     let response = await axios.get(`/user/manager/${id.params.id}`)
-    // console.log(response.data.data)
+    console.log(response.data, 'ME!!')
     return response.data.data
-} 
+}
+export const getManagerID = async(id) => {
+    let response = await axios.get(`/user/manager/${id.params.id}`)
+    console.log(response.data, 'ME!!')
+    return response.data.id
+}
 
-//properties loader
+// export const getManager = async()=> {
+//     let response = await Promise.all([getManagerDetails(),getManagerID()])
+//     console.log(response.data)
+//     return response.data
+// }
+
 export const getProperties = async() => {
     let response = await axios.get("/user/properties/")
     return response.data.properties
 }
-
-// property details loader
 export const getPropertyDetails = async(id) => {
     let response = await axios.get(`/user/property/${id.params.id}`)
     return response.data.data
+}
+
+// c r Update d
+export const updateManager = async(id, company, phone, email, office_address) => {
+    console.log(id, 'id')
+    let response = await axios.put(`/user/updatemanager/${id.params.id}`, {'company':company, 'phone':phone, 'email':email, 'office_address': office_address}) // this is undefined
+    console.log(response.data)
+    return response.data
+}
+
+
+// c r u Delete
+export const deleteManager = async(id) => {
+    let response = await axios.delete(`/user/deletemanager/${id}`)
+    console.log(response.data)
+    return response.data
+}
+export const deleteProperty = async(id) => {
+    let response = await axios.delete(`/user/deleteproperty/${id}`)
+    console.log(response.data)
+    return response.data
 }
