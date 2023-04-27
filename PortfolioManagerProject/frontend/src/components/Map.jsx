@@ -84,34 +84,22 @@ export default function Map() {
         return <h3>Loading...</h3>// loading screen
     }
 
-
-
-
-
-
     return (
         <div className="google_map">
-
             <GoogleMap 
                 center={center} 
-                zoom={10} 
+                zoom={12} 
                 mapContainerStyle={{
                     width: '400px', 
                     height: '400px'
                     }}
             >
-
-                {/* display markers */}
-
                 {
                     coordinates.map(({coords}) => (
                         <Marker position={coords}/>
                     ))
                 }
-                
             </GoogleMap>
-
-
         </div>
     )
 }

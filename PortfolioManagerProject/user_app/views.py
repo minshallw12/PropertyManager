@@ -3,10 +3,8 @@ from django.http import JsonResponse, HttpResponse
 from rest_framework.decorators import api_view
 from django.contrib.auth import authenticate, login, logout
 import requests
-from .models import App_User 
+from .models import * 
 from django.core.serializers import serialize
-
-
 import json
 
 # Create your views here.
@@ -93,3 +91,123 @@ def user_log_out(request):
 def send_the_index(request):
     the_index = open('static/index.html')
     return HttpResponse(the_index)
+
+@api_view(['POST'])
+def addManager(request):
+    company = request.data['company']
+    phone = request.data['phone']
+    email = request.data['email']
+    office_address = request.data['address']
+
+    try:
+        # creates new user
+        new_manager = Managers.objects.create(company = company, phone = phone, email = email, office_address = office_address)
+        new_manager.save()
+        return JsonResponse({"success":True})
+    except Exception as e:
+        print(e)
+        return JsonResponse({"success": False})
+    
+@api_view(['GET'])    
+def getManagers(request):
+    print(request, 'getManagers')
+    try:
+        managers = list(Managers.objects.all().values())
+        return JsonResponse({'managers': managers})
+    except Exception as e:
+        print(e)
+        return JsonResponse({'managers':[]})
+
+@api_view(['POST'])
+def addProperty(request):
+    print(request.data)
+    street = request.data['street']
+    city = request.data['city']
+    state = request.data['state']
+    square_feet = request.data['square_feet']
+    purchase_cost = request.data['purchase_cost']
+    current_income = request.data['current_income']
+    current_upkeep = request.data['current_upkeep']
+    manager = request.data['manager']
+    portfolio_id = request.data['portfolio_id']
+
+    try:
+        # creates new property in the database
+        new_property = Addresses.objects.create(
+                address = street, 
+                city = city, 
+                state = state, 
+                square_feet = square_feet,
+                purchase_cost = purchase_cost,
+                current_income = current_income, 
+                current_upkeep = current_upkeep,
+                manager_id = manager,
+                portfolio_id = portfolio_id
+            )
+        new_property.save()
+        return JsonResponse({"success":True})
+    except Exception as e:
+        print(e)
+        return JsonResponse({"success": False})
+    
+@api_view(['GET'])    
+def getProperties(request):
+    print(request, 'getProperties')
+    try:
+        properties = list(Addresses.objects.all().values())
+        return JsonResponse({'properties': properties})
+    except Exception as e:
+        print(e)
+        return JsonResponse({'properties':[]})
+    
+
+# This function serializes the data to return an object
+class CustomeEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, Managers):
+            return {
+                "company": obj.company, 
+                "phone": obj.phone, 
+                "email": obj.email, 
+                "office_address": obj.office_address
+            }
+        elif isinstance(obj,Addresses):
+            return {
+                "street": obj.address,
+                "city": obj.city,
+                "state": obj.state,
+                "square_feet": obj.square_feet,
+                "purchase_cost": obj.purchase_cost,
+                "current_income": obj.current_income,
+                "current_upkeep": obj.current_upkeep,
+                "manager": obj.manager.company
+            }
+        return super().default(obj)
+
+@api_view(['GET'])    
+def getManagerDetails(request, id):
+    print(request, 'getManagerDetails')
+    try:
+        manager = Managers.objects.get(id = id)
+        print(manager, 'manager in views')
+        json_data = json.dumps(manager, cls=CustomeEncoder)
+        print(json_data)
+    #response is failing because manager is NOT an object and not proper json
+        return JsonResponse({'data': json_data})
+    except Exception as e:
+        print(e)
+        return JsonResponse({'data': None})
+    
+@api_view(['GET'])    
+def getPropertyDetails(request, id):
+    print(request, 'getPropertyDetails')
+    try:
+        property = Addresses.objects.get(id = id)
+        print(property, "property in views")
+        json_data = json.dumps(property, cls=CustomeEncoder)
+        print(json_data)
+        return JsonResponse({'data': json_data})
+    except Exception as e:
+        print(e)
+        return JsonResponse({'data': None})
+    
