@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react';
-// import { useLoaderData } from 'react-router-dom'; // put this loader call inside the form
 import { addProperty, getManagers } from '../utilities';
-// import my_managers from '../data/my_managers.json'; // will need a loader to get the options for 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-
-export default function PropertyForm() {
+export default function PropertyForm({ onNewProperty }) {
     const [street, setStreet] = useState(null)
     const [city, setCity] =  useState(null)
     const [state, setState] = useState(null)
@@ -18,6 +15,30 @@ export default function PropertyForm() {
     const [portfolio_id, setPortfolio_id] = useState(1)
     const [managersList, setManagersList] = useState([])
     console.log(street, city, state, square_feet, purchase_cost, current_income, current_upkeep, manager, portfolio_id, managersList)
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const newProperty = await addProperty(
+          street,
+          city,
+          state,
+          square_feet,
+          purchase_cost,
+          current_income,
+          current_upkeep,
+          manager,
+          portfolio_id
+        );
+        onNewProperty(newProperty);
+        setStreet("");
+        setCity("");
+        setState("");
+        setSquare_feet("");
+        setPurchase_cost("");
+        setCurrent_income("");
+        setCurrent_upkeep("");
+        setManager("");
+      };
 
     useEffect(() => {
         async function fetchManagers() {
@@ -34,28 +55,7 @@ export default function PropertyForm() {
   return (
     <div>
         <h3>Add new property</h3>
-         <Form onSubmit={(event) => [
-            event.preventDefault(),
-            addProperty(
-                street,
-                city,
-                state,
-                square_feet,
-                purchase_cost,
-                current_income,
-                current_upkeep,
-                manager,
-                portfolio_id
-            ),
-            setStreet(""),
-            setCity(""),
-            setState(""),
-            setSquare_feet(""),
-            setPurchase_cost(""),
-            setCurrent_income(""),
-            setCurrent_upkeep(""),
-            setManager("")
-         ]}>
+         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formStreet" onChange={(event) => setStreet(event.target.value)}>
                 <Form.Label>Enter Property Details:</Form.Label>
                 <Form.Control type="text" placeholder="Street" />

@@ -90,9 +90,9 @@ export default function Map() {
                 center={center} 
                 zoom={12} 
                 mapContainerStyle={{
-                    width: '400px', 
-                    height: '400px'
-                    }}
+                    width: '500px', 
+                    height: '500px'
+                }}
             >
                 {
                     coordinates.map(({coords}) => (

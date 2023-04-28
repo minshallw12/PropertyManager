@@ -9,7 +9,7 @@ export const signUp = async(name, email, password) => {
     console.log(response.data.success)
     return response.data.success
 }
-
+// calculator utilities
 export const calculateMortgage = async(amount, term, rate) => {
     let response = await axios.post('/user/calculator/', {
         'amount': amount,
@@ -19,6 +19,16 @@ export const calculateMortgage = async(amount, term, rate) => {
     // console.log(response.data, "<-- response in utilities")
     return response.data
 }
+export const addYearsToDate = (dateStr, num) => {
+    let int = parseInt(num)
+    let date = new Date(dateStr);
+    date.setFullYear(date.getFullYear()+ int);
+    let year = date.getFullYear();
+    let month = (date.getMonth()+1).toString().padStart(2,'0');
+    let day = date.getDate().toString().padStart(2, '0');
+    let formattedDate = `${year}-${month}-${day}`;
+    return formattedDate
+};
 
 
 export const logIn = async(email, password, setUser, setLogInFlag) => {
@@ -91,13 +101,6 @@ export const getManagerID = async(id) => {
     console.log(response.data, 'ME!!')
     return response.data.id
 }
-
-// export const getManager = async()=> {
-//     let response = await Promise.all([getManagerDetails(),getManagerID()])
-//     console.log(response.data)
-//     return response.data
-// }
-
 export const getProperties = async() => {
     let response = await axios.get("/user/properties/")
     return response.data.properties

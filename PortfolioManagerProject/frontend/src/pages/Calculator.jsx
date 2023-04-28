@@ -1,14 +1,16 @@
 import { useState } from 'react';
-import { calculateMortgage } from '../utilities';
+import { calculateMortgage, addYearsToDate } from '../utilities';
 
 
 export default function Calculator() {
-    const [loanAmount, setLoanAmount] = useState(250000)
-    const [loanTerm, setLoanTerm] = useState(30)
-    const [loanRate, setLoanRate] = useState(5)
+    const [loanAmount, setLoanAmount] = useState(0)
+    const [loanTerm, setLoanTerm] = useState(0)
+    const [loanRate, setLoanRate] = useState(0)
     const [summary, setSummary] = useState({})
     const [amortization, setAmortization] = useState({})
     const [interest, setInterest] = useState(0)
+    const [startDate, setStartDate] = useState(null)
+    console.log(startDate)
 
     async function clickHandler(event) {
         event.preventDefault();
@@ -65,7 +67,9 @@ export default function Calculator() {
                         <input 
                             className="input" 
                             id="date_input" 
-                            type="date"/>
+                            type="date"
+                            onChange={(event) => setStartDate(event.target.value)}
+                        />
                     </div>
                     <div className="button">
                         <button type='submit'>Calculate</button>
@@ -94,7 +98,7 @@ export default function Calculator() {
                             </div>
                             <div class="monthly_date">
                                 <h5>Payoff date</h5>
-                                <div id="date"></div>
+                                <div id="date">{startDate?addYearsToDate(startDate, loanTerm): 'yyyy-mm-dd'}</div>
                             </div>
                         </div>
                     </div>

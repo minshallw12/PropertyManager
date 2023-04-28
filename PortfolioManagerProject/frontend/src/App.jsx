@@ -46,7 +46,7 @@ export default function App() {
   function resetUser() {
     setUser({user, user: null})
   }
-
+  console.log(user)
   return (
     <div className="App">
       <UserContext.Provider value={{user, setUser}} >
